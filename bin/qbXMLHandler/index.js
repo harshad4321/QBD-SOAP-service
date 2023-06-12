@@ -51,12 +51,14 @@ function buildRequests(callback) {
     var xml = convert('QBXML', {
         QBXMLMsgsRq: {
             _attr: { onError: 'stopOnError' },
+            // ItemQueryRq: {
             CustomerQueryRq: {
-                MaxReturned: 1000,
+                MaxReturned: 100,
                 // ModifiedDateRangeFilter: {
-                FromModifiedDate: "2023-01-15T09:15:12", // fromDate
-                ToModifiedDate: "2023-08-15T12:15:12"    //toDate
+                FromModifiedDate: "2024-12-15T14:04:46+05:30", // fromDate
+                ToModifiedDate: "2024-12-15T14:04:46+05:30"    //toDate
                 // }
+                // TimeCreated: " 2023-01 - 15T09: 15: 12",
             },
         },
     });
