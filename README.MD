@@ -5,6 +5,9 @@ A SOAP service implemented in Node.js that communicates with QuickBook's Web Con
 ## Description
 This project provides a SOAP service implemented in Node.js that enables seamless communication with QuickBook's Web Connector. It allows for efficient integration with QuickBooks Desktop, facilitating the retrieval of data and streamlining processes.
 
+*This sample is a Node.js web service application that communicates with
+QuickBooks via QBWebConnector. The sample focuses primarily on demonstrating
+how to setup all web service web methods to run against QBWebConnector.
 
 ## Usage
 To get started with the qwd-api, please follow these steps:
@@ -24,7 +27,7 @@ QB_COMPANY_FILE= `
 ### qbXML Handler
 You must addtionally create your own `qbXMLHandler` that will send the SOAP Server a queue of requests to pass to QBWC. It will addtionally handle the qbXML responses and any errors that may be returned.
 
-There is an [example class here]([https://github.com/RappidDevelopment/quickbooks-js/blob/master/bin/qbXMLHandler/index.js](https://github.com/harshad4321/QBD-SOAP-service/blob/master/bin/qbXMLHandler/index.js).
+There is an [example class here](https://github.com/harshad4321/QBD-SOAP-service/blob/master/bin/qbXMLHandler/index.js).
 
 ### SOAP Server Setup
 To start the service from the command line simply run:  
