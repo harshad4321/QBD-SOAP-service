@@ -1,20 +1,52 @@
-======
-A SOAP service implemented in Node.js that communicates with [QuickBook's Web Connector](https://developer.intuit.com/docs/0200_quickbooks_desktop/0400_tools/web_connector).
+# qwd-api
+A SOAP service implemented in Node.js that communicates with QuickBook's Web Connector.
 
-## Usage 
-The following steps _should_ get you up and running. 
 
-### Prerequisites
-There are a few prerequisites you should have on hand:  
-*  Access to the desktop running Quickbooks and hosting the Company File.  
-*  The Quickbooks Company's administrator (user: `admin`) password   
-*  _Optional:_ A dedicated username and password for your web-service to interact with the Quickbooks Web Connector (**it is not recommended to use the admin username and password!**).  
-*  _Optional:_ The port on which the service should be available. Defaults to `8080`.
+## Description
+This project provides a SOAP service implemented in Node.js that enables seamless communication with QuickBook's Web Connector. It allows for efficient integration with QuickBooks Desktop, facilitating the retrieval of data and streamlining processes.
 
-Set environment (`env`) variables for the following values (these are the defaults):  
+
+## Usage
+To get started with the qwd-api, please follow these steps:
+
+Prerequisites
+Before using the qwd-api, ensure you have the following prerequisites:
+
+- Access to the desktop running QuickBooks and hosting the Company File.
+- The QuickBooks Company's administrator (user: ***) password.
+- (Optional) A dedicated username and password for your web-service to interact   with the QuickBooks Web Connector (Note: It is not recommended to use the       admin username and password).
+- (Optional) The port on which the service should be available (defaults to  8000).
+### Set environment (env) variables for the following values (these are the defaults):
+`QB_USERNAME=username
+QB_PASSWORD=password
+QB_COMPANY_FILE= `
+
+### qbXML Handler
+You must addtionally create your own `qbXMLHandler` that will send the SOAP Server a queue of requests to pass to QBWC. It will addtionally handle the qbXML responses and any errors that may be returned.
+
+There is an [example class here]([https://github.com/RappidDevelopment/quickbooks-js/blob/master/bin/qbXMLHandler/index.js](https://github.com/harshad4321/QBD-SOAP-service/blob/master/bin/qbXMLHandler/index.js).
+
+### SOAP Server Setup
+To start the service from the command line simply run:  
+``` 
+node bin/run
 ```
-QB_USERNAME=username
-QB_PASSWORD=password  
-QB_COMPANY_FILE=C:\Users\Public\Documents\Intuit\QuickBooks\Sample Company Files\QuickBooks 2014\sample_wholesale-distribution business.qbw  
-QB_SOAP_PORT=8000  
-```  
+or 
+install [nodemon](https://www.npmjs.com/package/nodemon)
+``` 
+npm start 
+```
+### QBWC Setup 
+1. Login to your Quickbooks Company with your `admin` user.
+2. In the Quickbooks Web Connector, select "Add an Application" and supply it with a `.qwc` file. There is an example [here](https://github.com/harshad4321/QBD-SOAP-service/blob/master/test/app.qwc)
+  * `<OwnerID>` and `<FileID>`can be any random `guid`
+3. Quickbooks will prompt you to authorize your new web service.
+4. You may need to enter your password into QBWC once the app is added.
+
+
+
+## Tests 
+Unit tests are written in mocha.
+```
+npm test
+```

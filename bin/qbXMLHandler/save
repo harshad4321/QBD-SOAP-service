@@ -1,0 +1,101 @@
+var data2xml = require('data2xml');
+var convert = data2xml({
+    xmlHeader: '<?xml version="1.0" encoding="utf-8"?>\n<?qbxml version="13.0"?>\n'
+});
+
+// Public
+module.exports = {
+
+    /**
+     * Builds an array of qbXML commands
+     * to be run by QBWC.
+     *
+     * @param callback(err, requestArray)
+     */
+    fetchRequests: function (callback) {
+        buildRequests(callback);
+    },
+
+    /**
+     * Called when a qbXML response
+     * is returned from QBWC.
+     *
+     * @param response - qbXML response
+     */
+
+
+
+
+    handleResponse: function (response) {
+        console.log(response);
+
+    },
+
+
+    /**
+     * Called when there is an error
+     * returned processing qbXML from QBWC.
+     *
+     * @param error - qbXML error response
+     */
+    didReceiveError: function (error) {
+        console.log(error);
+    }
+};
+//job->[JobTypeQueryRq],SalesOrder->[SalesOrderQueryRq],Invoice-> [InvoiceQueryRq],Item ->[ItemQueryRq] ,PurchaseOrder[PurchaseOrderQueryRq]
+//The MaxReturned property is used to control the number of results that are returned by a query. In this case, the function is requesting up to 1000 purchase orders. However, the actual number of results that are returned may be less than 1000 if there are not that many purchase orders in the QuickBooks database.
+// If you do not use the MaxReturned property, the function will request all of the results that are available. 
+function buildRequests(callback) {
+    var requests = new Array();
+    var xml = convert(
+        'QBXML',
+        {
+            // QBXMLMsgsRq: {
+            //     _attr: { onError: 'stopOnError' },
+            //     PurchaseOrderQueryRq: {
+            //         MaxReturned: 1000,
+            //     },
+
+            QBXMLMsgsRq: {
+                _attr: { onError: 'stopOnError' },
+                PurchaseOrderQueryRq: {
+                    MaxReturned: 100,
+                    DateRangeFrom: new Date(),
+                    DateRangeTo: new Date(),
+                },
+            },
+        }
+    );
+    requests.push(xml);
+
+    return callback(null, requests);
+}
+
+
+
+//----------------------------data &time  auto get--------------//
+
+function buildRequests(callback) {
+    var requests = [];
+
+    var today = new Date();
+    var fiveDaysAgo = new Date();
+    fiveDaysAgo.setDate(fiveDaysAgo.getDate() - 5);
+
+    var fromDate = formatDate(fiveDaysAgo);
+    var toDate = formatDate(today);
+
+    var xml = convert('QBXML', {
+        QBXMLMsgsRq: {
+            _attr: { onError: 'stopOnError' },
+            CustomerQueryRq: {
+                MaxReturned: 100,
+                FromModifiedDate: fromDate,
+                ToModifiedDate: toDate
+            },
+        },
+    });
+    requests.push(xml);
+
+    return callback(null, requests);
+}

@@ -22,10 +22,8 @@ module.exports = {
      *
      * @param response - qbXML response
      */
-
     handleResponse: function (response) {
         console.log(response);
-
     },
 
     /**
@@ -40,19 +38,28 @@ module.exports = {
 };
 
 function buildRequests(callback) {
-    var requests = new Array();
-    var xml = convert(
-        'QBXML',
-        {
-            QBXMLMsgsRq: {
-                _attr: { onError: 'stopOnError' },
+    var requests = [];
+    // var requests = [];
 
-                CustomerQueryRq: {
-                    MaxReturned: 100,
-                },
+    // var today = new Date();
+    // var fiveDaysAgo = new Date();
+    // fiveDaysAgo.setDate(fiveDaysAgo.getDate() - 5);
+
+    // var fromDate = formatDate(fiveDaysAgo);
+    // var toDate = formatDate(today);
+    //job->[JobTypeQueryRq],SalesOrder->[SalesOrderQueryRq],Invoice-> [InvoiceQueryRq],Item ->[ItemQueryRq] ,PurchaseOrder[PurchaseOrderQueryRq]
+    var xml = convert('QBXML', {
+        QBXMLMsgsRq: {
+            _attr: { onError: 'stopOnError' },
+            CustomerQueryRq: {
+                MaxReturned: 1000,
+                // ModifiedDateRangeFilter: {
+                FromModifiedDate: "2023-01-15T09:15:12", // fromDate
+                ToModifiedDate: "2023-08-15T12:15:12"    //toDate
+                // }
             },
-        }
-    );
+        },
+    });
     requests.push(xml);
 
     return callback(null, requests);

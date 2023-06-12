@@ -65,7 +65,7 @@ Client.prototype.clientVersionBelowRecommended = function (callback) {
 Client.prototype.authenticateWithCorrectUsernameAndPassword = function (callback) {
     var args = {
         strUserName: process.env.QB_USERNAME || 'Harshad N',
-        strPassword: process.env.QB_PASSWORD || '@Password4321@'
+        strPassword: process.env.QB_PASSWORD || '@Password54321@'
     };
     this.client.authenticate(args, function (err, result) {
         return callback(err, result);
