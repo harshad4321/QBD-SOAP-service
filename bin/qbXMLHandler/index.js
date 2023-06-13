@@ -52,13 +52,15 @@ function buildRequests(callback) {
         QBXMLMsgsRq: {
             _attr: { onError: 'stopOnError' },
             // ItemQueryRq: {
-            CustomerQueryRq: {
-                MaxReturned: 100,
-                // ModifiedDateRangeFilter: {
-                FromModifiedDate: "2024-12-15T14:04:46+05:30", // fromDate
-                ToModifiedDate: "2024-12-15T14:04:46+05:30"    //toDate
-                // }
-                // TimeCreated: " 2023-01 - 15T09: 15: 12",
+            InvoiceQueryRq: {
+                // MaxReturned: 1000,
+                ModifiedDateRangeFilter: {
+                    FromModifiedDate: "2024-12-15T20:22:03+05:30"
+                }
+                // FromModifiedDate: "2024-12-15 T20:22:03+05:30",  // fromDate
+                // ToModifiedDate: "2024-12-15T14:04:46+05:30"    //toDate
+                // Invoive->2023-12-16T10:34:13+05:30
+                // TimeCreated: "2024-12-15T14:04:46+05:30",
             },
         },
     });

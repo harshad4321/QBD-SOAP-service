@@ -9,6 +9,7 @@ This project provides a SOAP service implemented in Node.js that enables seamles
 QuickBooks via QBWebConnector. The sample focuses primarily on demonstrating
 how to setup all web service web methods to run against QBWebConnector.
 
+ AND using this Node.js project  Able to fetching data from QBD `Datas like :(job->[JobTypeQueryRq],SalesOrder->[SalesOrderQueryRq],Invoice->[InvoiceQueryRq],Item ->[ItemQueryRq] ,PurchaseOrder->[PurchaseOrderQueryRq] ,Bill ->(BillQueryRq) Customer->(CustomerQueryRq )etc.. ) `
 ## Usage
 To get started with the qwd-api, please follow these steps:
 
