@@ -11,10 +11,12 @@ how to setup all web service web methods to run against QBWebConnector.
 
  AND using this Node.js project  Able to fetching data from QBD `Datas like :(job->[JobTypeQueryRq],SalesOrder->[SalesOrderQueryRq],Invoice->[InvoiceQueryRq],Item ->[ItemQueryRq] ,PurchaseOrder->[PurchaseOrderQueryRq] ,Bill ->(BillQueryRq) Customer->(CustomerQueryRq )etc.. ) `
  
+
+
  change the code [ here](https://github.com/harshad4321/QBD-SOAP-service/blob/master/bin/qbXMLHandler/index.js).
  
  
- ### For Better understanding prefer this [Click here](https://developer.intuit.com/app/developer/qbdesktop/docs/api-reference/qbdesktop/customerquery) 
+ #### For Better understanding prefer this [Site: Click here](https://developer.intuit.com/app/developer/qbdesktop/docs/api-reference/qbdesktop/customerquery) 
  
  
 ## Usage
@@ -53,8 +55,6 @@ npm start
   * `<OwnerID>` and `<FileID>`can be any random `guid`
 3. Quickbooks will prompt you to authorize your new web service.
 4. You may need to enter your password into QBWC once the app is added.
-
-
 
 ## Tests 
 Unit tests are written in mocha.
